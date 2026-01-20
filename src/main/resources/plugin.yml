@@ -1,0 +1,7 @@
+name: AuraSunItems
+version: '1.0-BETA'
+main: ru.mantiyt.aurasunitems.AuraSunItems
+api-version: '1.16'
+commands:
+  aurasunitems:
+    aliases: [ sunitem ]

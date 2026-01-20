@@ -1,0 +1,59 @@
+helmet:
+  material: GOLD_HELMET
+  display-name: "#FF9B00Ш#FF9500л#FF9000е#FF8A00м #FF7F00л#FF7900е#FF7400г#FF6E00е#FF6800н#FF6300д#FF5D00ы"
+  lore:
+    - ""
+    - "&7Особенности:"
+    - "&f • #FF9B00Полная защита как у незеритового"
+    - "&f #FF9B00Неразрушимый"
+    - "&f #FF9B00Поддержка зачарований"
+    - ""
+  custom-model-data: 0
+  attributes:
+    armor: 3.0
+    armor_toughness: 3.0
+    knockback_resistance: 0.1
+  enchantments:
+    - "protection_environmental:5"
+    - "fire_protection:4"
+    - "blast_protection:4"
+    - "projectile_protection:4"
+    - "respiration:3"
+    - "aqua_affinity:1"
+  unbreakable: true
+
+boots:
+  material: GOLD_BOOTS
+  display-name: "#FF9B00Б#FF9700о#FF9200т#FF8E00и#FF8900н#FF8500к#FF8000и #FF7800л#FF7300е#FF6F00г#FF6A00е#FF6600н#FF6100д#FF5D00ы"
+  lore:
+    - ""
+    - "&7Особенности:"
+    - "&f • #FF9B00Полная защита как у незеритовых"
+    - "&f #FF9B00Неразрушимый"
+    - "&f #FF9B00Поддержка зачарований"
+    - ""
+  custom-model-data: 0
+  attributes:
+    armor: 3.0
+    armor_toughness: 3.0
+    knockback_resistance: 0.1
+  enchantments:
+    - "protection_environmental:5"
+    - "fire_protection:4"
+    - "blast_protection:4"
+    - "projectile_protection:4"
+    - "feather_falling:4"
+    - "depth_strider:3"
+    - "frost_walker:2"
+  unbreakable: true
+
+messages:
+  usage: "&6Использование: /sunitems <helmet|boots|reload> [игрок]"
+  no-permission: "&cУ вас нет прав на использование этой команды!"
+  player-only: "&cЭта команда доступна только игрокам!"
+  player-not-found: "&cИгрок %player% не найден!"
+  helmet-given: "&aШлем Солнца выдан игроку %player%!"
+  boots-given: "&aБотинки Солнца выданы игроку %player%!"
+  received-helmet: "&aВы получили Шлем Солнца!"
+  received-boots: "&aВы получили Ботинки Солнца!"
+  reloaded-config: "&aКонфигурация успешно перезагружена!"
