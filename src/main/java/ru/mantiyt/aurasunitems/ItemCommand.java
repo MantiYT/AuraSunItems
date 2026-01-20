@@ -25,12 +25,8 @@ public class ItemCommand implements CommandExecutor {
         String subCommand = args[0].toLowerCase();
 
         switch (subCommand) {
-            case "helmet":
             case "give":
-                handleGiveHelmet(sender, args);
-                break;
-            case "boots":
-                handleGiveBoots(sender, args);
+                handleGive(sender, args);
                 break;
             case "reload":
                 handleReload(sender);
@@ -39,64 +35,69 @@ public class ItemCommand implements CommandExecutor {
                 sendUsage(sender);
                 break;
         }
-
         return true;
     }
 
-    private void handleGiveHelmet(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("holysunitems.give")) {
+    private void handleGive(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("aurasunitems.admin")) {
             sendMessage(sender, "no-permission");
             return;
         }
 
-        Player target = getTarget(sender, args);
-        if (target == null) return;
+        if (args.length < 2) {
+            sendMessage(sender, "usage-give");
+            return;
+        }
 
-        giveHelmet(target);
+        String itemType = args[1].toLowerCase();
+        ItemStack item = null;
+        String receivedKey = null;
+        String givenKey = null;
+
+        if (itemType.equals("helmet")) {
+            item = plugin.getItemManager().getSunHelmet();
+            receivedKey = "received-helmet";
+            givenKey = "helmet-given";
+        } else if (itemType.equals("boots")) {
+            item = plugin.getItemManager().getSunBoots();
+            receivedKey = "received-boots";
+            givenKey = "boots-given";
+        } else {
+            sendMessage(sender, "invalid-item");
+            return;
+        }
+
+        if (item == null) {
+            sendMessage(sender, "item-not-configured");
+            return;
+        }
+
+        Player target;
+        if (args.length >= 3) {
+            target = Bukkit.getPlayer(args[2]);
+            if (target == null) {
+                sendMessage(sender, "player-not-found", "%player%", args[2]);
+                return;
+            }
+        } else {
+            if (!(sender instanceof Player)) {
+                sendMessage(sender, "player-only");
+                return;
+            }
+            target = (Player) sender;
+        }
+
+        giveItem(target, item.clone());
 
         if (target.equals(sender)) {
-            sendMessage(sender, "received-helmet");
+            sendMessage(sender, receivedKey);
         } else {
-            sendMessage(sender, "helmet-given", "%player%", target.getName());
+            sendMessage(sender, givenKey, "%player%", target.getName());
         }
-    }
-
-    private void giveHelmet(Player player) {
-        ItemStack helmet = plugin.getItemManager().getSunHelmet();
-        if (helmet == null) {
-            return;
-        }
-        giveItem(player, helmet);
-    }
-
-    private void handleGiveBoots(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("holysunitems.give")) {
-            sendMessage(sender, "no-permission");
-            return;
-        }
-
-        Player target = getTarget(sender, args);
-        if (target == null) return;
-
-        giveBoots(target);
-
-        if (target.equals(sender)) {
-            sendMessage(sender, "received-boots");
-        } else {
-            sendMessage(sender, "boots-given", "%player%", target.getName());
-        }
-    }
-
-    private void giveBoots(Player player) {
-        ItemStack boots = plugin.getItemManager().getSunBoots();
-        if (boots == null) {
-            return;
-        }
-        giveItem(player, boots);
     }
 
     private void handleReload(CommandSender sender) {
-        if (!sender.hasPermission("holysunitems.reload")) {
+        if (!sender.hasPermission("aurasunitems.admin")) {
             sendMessage(sender, "no-permission");
             return;
         }
@@ -104,26 +105,6 @@ public class ItemCommand implements CommandExecutor {
         plugin.reloadConfig();
         plugin.getItemManager().reload();
         sendMessage(sender, "reloaded-config");
-    }
-
-    private Player getTarget(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            if (!(sender instanceof Player)) {
-                sendMessage(sender, "player-only");
-                return null;
-            }
-            return (Player) sender;
-        }
-
-        String targetName = args[1];
-        Player target = Bukkit.getPlayer(targetName);
-
-        if (target == null) {
-            sendMessage(sender, "player-not-found", "%player%", targetName);
-            return null;
-        }
-
-        return target;
     }
 
     private void giveItem(Player player, ItemStack item) {
@@ -135,12 +116,28 @@ public class ItemCommand implements CommandExecutor {
     }
 
     private void sendUsage(CommandSender sender) {
-        sendMessage(sender, "usage");
+        sender.sendMessage(ColorUtil.translate("AuraSunItems"));
+        sender.sendMessage(ColorUtil.translate("&f/sunitems give <helmet|boots> [игрок] &7— выдать предмет"));
+        sender.sendMessage(ColorUtil.translate("&f/sunitems reload &7— перезагрузить конфиг"));
     }
 
     private void sendMessage(CommandSender sender, String configPath, String... replacements) {
         String message = plugin.getConfig().getString("messages." + configPath, "");
-        if (message.isEmpty()) return;
+        if (message == null || message.isEmpty()) {
+            switch (configPath) {
+                case "usage-give":
+                    message = "&cИспользование: /sunitems give <helmet|boots> [игрок]";
+                    break;
+                case "invalid-item":
+                    message = "&cПредмет не найден! Используй: helmet или boots";
+                    break;
+                case "item-not-configured":
+                    message = "&cПредмет не настроен в конфиге!";
+                    break;
+                default:
+                    return;
+            }
+        }
 
         for (int i = 0; i < replacements.length; i += 2) {
             if (i + 1 < replacements.length) {
