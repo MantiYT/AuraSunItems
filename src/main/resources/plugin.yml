@@ -1,7 +1,7 @@
-name: AuraSunItems
-version: '1.1'
-main: ru.mantiyt.aurasunitems.AuraSunItems
+name: RideEggKeeper
+version: '1.0'
+main: ru.mantiyt.rideeggkeeper.RideEggKeeper
 api-version: '1.16'
 commands:
-  aurasunitems:
-    aliases: [ sunitem ]
+  rideeggkeeper: {}
+  eggkeeper: {}

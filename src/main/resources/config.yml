@@ -1,57 +1,26 @@
-helmet:
-  material: GOLD_HELMET
-  display-name: "#FF9B00Ш#FF9500л#FF9000е#FF8A00м #FF7F00л#FF7900е#FF7400г#FF6E00е#FF6800н#FF6300д#FF5D00ы"
-  lore:
-    - ""
-    - "&7Особенности:"
-    - "&f • #FF9B00Полная защита как у незеритового"
-    - "&f #FF9B00Неразрушимый"
-    - "&f #FF9B00Поддержка зачарований"
-    - ""
-  custom-model-data: 0
-  attributes:
-    armor: 3.0
-    armor_toughness: 3.0
-    knockback_resistance: 0.1
-  enchantments:
-    - "protection_environmental:5"
-    - "fire_protection:4"
-    - "blast_protection:4"
-    - "projectile_protection:4"
-    - "respiration:3"
-    - "aqua_affinity:1"
-  unbreakable: true
+ender-egg-command: "give {player} dragon_egg 1"
+ender-egg-chance: 0.001
 
-boots:
-  material: GOLD_BOOTS
-  display-name: "#FF9B00Б#FF9700о#FF9200т#FF8E00и#FF8900н#FF8500к#FF8000и #FF7800л#FF7300е#FF6F00г#FF6A00е#FF6600н#FF6100д#FF5D00ы"
-  lore:
-    - ""
-    - "&7Особенности:"
-    - "&f • #FF9B00Полная защита как у незеритовых"
-    - "&f #FF9B00Неразрушимый"
-    - "&f #FF9B00Поддержка зачарований"
-    - ""
-  custom-model-data: 0
-  attributes:
-    armor: 3.0
-    armor_toughness: 3.0
-    knockback_resistance: 0.1
-  enchantments:
-    - "protection_environmental:5"
-    - "fire_protection:4"
-    - "blast_protection:4"
-    - "projectile_protection:4"
-    - "feather_falling:4"
-    - "depth_strider:3"
-    - "frost_walker:2"
-  unbreakable: true
-
-messages:
-  usage: "&6Использование: /sunitems <give/reload> <helmet/boots> <игрок>"
-  no-permission: "&cУ вас нет прав на использование этой команды!"
-  player-only: "&cЭта команда доступна только игрокам!"
-  player-not-found: "&cИгрок %player% не найден!"
-  helmet-given: "&aШлем Солнца выдан игроку %player%!"
-  boots-given: "&aБотинки Солнца выданы игроку %player%!"
-  reloaded-config: "&aКонфигурация успешно перезагружена!"
+egg-items:
+  oskol:
+    material: "PUFFERFISH_SPAWN_EGG"
+    name: "&x&B&5&6&7&0&0О&x&C&0&6&B&0&0с&x&C&A&7&0&0&0к&x&D&5&7&4&0&0о&x&D&F&7&9&0&0л&x&E&A&7&D&0&0о&x&F&4&8&2&0&0ч&x&F&F&8&6&0&0н&x&F&4&8&2&0&0о&x&E&A&7&D&0&0е &x&D&5&7&4&0&0я&x&C&A&7&0&0&0й&x&C&0&6&B&0&0ц&x&B&5&6&7&0&0о"
+    lore:
+      - " "
+      - "&8Особенности:"
+      - "&5&x&E&7&E&7&E&7 - получайте &x&F&F&8&6&0&0осколочные яйца"
+      - "&5&0.&x&E&7&E&7&E&7   добывая вещи из посылок;"
+      - "&5&x&E&7&E&7&E&7 - можно обменять на &x&F&F&8&6&0&0яйца призыва"
+      - "&5&0.&x&E&7&E&7&E&7   у специального NPC на спавне."
+      - " "
+  ender:
+    material: "ENDERMAN_SPAWN_EGG"
+    name: "&x&7&6&0&0&B&2О&x&7&B&0&0&B&Aс&x&8&1&0&0&C&3к&x&8&7&0&0&C&Bо&x&8&D&0&0&D&4л&x&9&2&0&0&D&Cо&x&9&8&0&0&E&5ч&x&9&E&0&0&E&Dн&x&A&4&0&0&F&6о&x&A&A&0&0&F&Fе &x&A&4&0&0&F&6э&x&9&E&0&0&E&Dн&x&9&8&0&0&E&5д&x&9&2&0&0&D&Cе&x&8&D&0&0&D&4р &x&8&7&0&0&C&Bя&x&8&1&0&0&C&3й&x&7&B&0&0&B&Aц&x&7&6&0&0&B&2о"
+    lore:
+      - " "
+      - "&8Особенности:"
+      - "&5&x&E&7&E&7&E&7 - получайте такие &x&A&A&0&0&F&Fосколочные эндер яйца"
+      - "&5&0.&x&E&7&E&7&E&7   исследуя и сражаясь за &x&A&A&0&0&F&FЭндер-мир;"
+      - "&5&x&E&7&E&7&E&7 - можно обменять на ценное &x&A&A&0&0&F&FЯйцо Дракона"
+      - "&5&0.&x&E&7&E&7&E&7   у специального NPC на спавне."
+      - " "
